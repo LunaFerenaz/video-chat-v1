@@ -6,8 +6,8 @@ const backBtn = document.querySelector(".header__back");
 myVideo.muted = true;
 
 backBtn.addEventListener("click", () => {
-  document.querySelector(".main__left").style.display = "flex";
-  document.querySelector(".main__left").style.flex = "1";
+  /*document.querySelector(".main__left").style.display = "flex";
+  document.querySelector(".main__left").style.flex = "1";*/
   document.querySelector(".main__right").style.display = "none";
   document.querySelector(".header__back").style.display = "none";
 });
@@ -15,7 +15,7 @@ backBtn.addEventListener("click", () => {
 showChat.addEventListener("click", () => {
   document.querySelector(".main__right").style.display = "flex";
   document.querySelector(".main__right").style.flex = "1";
-  document.querySelector(".main__left").style.display = "none";
+  /*document.querySelector(".main__left").style.display = "none";*/
   document.querySelector(".header__back").style.display = "block";
 });
 
@@ -27,7 +27,7 @@ var peer = new Peer(undefined, {
   port: "443",
 });
 
-let myVideoStream;
+/*let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
     audio: true,
@@ -48,27 +48,27 @@ navigator.mediaDevices
     socket.on("user-connected", (userId) => {
       connectToNewUser(userId, stream);
     });
-  });
+  });*/
 
-const connectToNewUser = (userId, stream) => {
+/*const connectToNewUser = (userId, stream) => {
   const call = peer.call(userId, stream);
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
   });
-};
+};*/
 
 peer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id, user);
 });
 
-const addVideoStream = (video, stream) => {
+/*const addVideoStream = (video, stream) => {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
     video.play();
     videoGrid.append(video);
   });
-};
+};*/
 
 let text = document.querySelector("#chat_message");
 let send = document.getElementById("send");
@@ -88,8 +88,8 @@ text.addEventListener("keydown", (e) => {
   }
 });
 
-const inviteButton = document.querySelector("#inviteButton");
-const muteButton = document.querySelector("#muteButton");
+/*const inviteButton = document.querySelector("#inviteButton");*/
+/*const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
 muteButton.addEventListener("click", () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
@@ -104,9 +104,9 @@ muteButton.addEventListener("click", () => {
     muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   }
-});
+});*/
 
-stopVideo.addEventListener("click", () => {
+/*stopVideo.addEventListener("click", () => {
   const enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
@@ -119,14 +119,14 @@ stopVideo.addEventListener("click", () => {
     stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   }
-});
+});*/
 
-inviteButton.addEventListener("click", (e) => {
+/*inviteButton.addEventListener("click", (e) => {
   prompt(
     "Copy this link and send it to people you want to meet with",
     window.location.href
   );
-});
+});*/
 
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
